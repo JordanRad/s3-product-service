@@ -21,11 +21,11 @@ public class Product {
 
     private int quantity;
 
-    private String category;
+    private Category category;
 
     public Product(){ }
 
-    public Product(long id, String name, String description, double price, int quantity, String category) {
+    public Product(long id, String name, String description, double price, int quantity, Category category) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -74,11 +74,11 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 }
