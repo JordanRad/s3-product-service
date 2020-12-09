@@ -17,6 +17,9 @@ public class Product {
 
     private String description;
 
+    @Column(columnDefinition="text")
+    private String detailedDescription;
+
     private double price;
 
     private int quantity;
@@ -80,5 +83,13 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public String getDetailedDescription() {
+        return detailedDescription;
+    }
+
+    public void setDetailedDescription(String detailedDescription) {
+        this.detailedDescription = detailedDescription;
     }
 }

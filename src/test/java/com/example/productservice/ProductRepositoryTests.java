@@ -97,23 +97,6 @@ public class ProductRepositoryTests {
         assertThat(createdProduct.getQuantity()).isEqualTo(productThree.getQuantity());
     }
 
-    @Test
-    public void Should_Not_Create_Existing_Product() {
-        Product productThree = new Product();
-        productThree.setName("Greenlights");
-        productThree.setDescription("by Matthew");
-        productThree.setPrice(24.99);
-        productThree.setQuantity(4);
-
-        Product createdProduct = repository.save(productThree);
-
-        Product productFour = new Product();
-        productFour.setName("Greenlights");
-        productFour.setPrice(24.99);
-        productFour.setId(createdProduct.getId());
-
-        repository.save(productFour);
-    }
 
     @Test
     public void Should_Update_A_Product() {

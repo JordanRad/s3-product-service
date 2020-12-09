@@ -32,7 +32,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getAllProducts(@PathVariable long id) {
+    public ResponseEntity<?> getProductById(@PathVariable long id) {
 
         Product product = repository.findById(id).orElse(new Product());
 
@@ -42,7 +42,7 @@ public class ProductController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<?> createNewProduct(@PathVariable Product product) {
+    public ResponseEntity<?> createNewProduct(@RequestBody Product product) {
         if (repository.findByName(product.getName()) == null) {
             repository.save(product);
             return
@@ -54,7 +54,7 @@ public class ProductController {
     }
 
     @PutMapping("/")
-    public ResponseEntity<?> updateProduct(@PathVariable Product product) {
+    public ResponseEntity<?> updateProduct(@RequestBody Product product) {
 
         Product updatedProduct =
                 repository.findById(product.getId()).orElseThrow();
@@ -71,13 +71,14 @@ public class ProductController {
 
     }
 
-    @DeleteMapping("/")
-    public ResponseEntity<?> deleteProduct(@PathVariable Product product) {
-        repository.delete(product);
-
-        return
-                new ResponseEntity<>(String.format("Product with name %s has just been deleted.", product.getName()), HttpStatus.OK);
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteProduct(@PathVariable long id) {
+        repository.deleteById(id);
+        if(repository.findById(id)!=null) {
+            return new ResponseEntity<>(String.format("Product with name %d has just been deleted.", id), HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>("Product cannot be deleted.", HttpStatus.NOT_FOUND);
+        }
     }
 
 }
