@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
 @EnableEurekaClient
+@EnableJpaAuditing
 public class ProductServiceApplication {
 
 	public static void main(String[] args) {
