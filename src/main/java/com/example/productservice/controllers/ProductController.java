@@ -1,5 +1,6 @@
 package com.example.productservice.controllers;
 
+import com.example.productservice.models.Category;
 import com.example.productservice.models.Product;
 import com.example.productservice.models.User;
 import com.example.productservice.repository.ProductRepository;
@@ -44,7 +45,22 @@ public class ProductController {
     @PostMapping("/")
     public ResponseEntity<?> createNewProduct(@RequestBody Product product) {
         if (repository.findByName(product.getName()) == null) {
-            repository.save(product);
+            Product newProduct =  new Product();
+            newProduct.setName(product.getName());
+            newProduct.setQuantity(product.getQuantity());
+            newProduct.setPrice(product.getPrice());
+            newProduct.setDescription(product.getDescription());
+            newProduct.setDetailedDescription("Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusa");
+            System.out.println(product.getCategory());
+            Category c = null;
+            if(product.getCategory().toString().equals("Book"))
+                c=Category.Book;
+            if(product.getCategory().toString().equals("Magazine"))
+                c=Category.Magazine;
+            if(product.getCategory().toString().equals("Video Games"))
+                c=Category.VideoGames;
+            newProduct.setCategory(c);
+            repository.save(newProduct);
             return
                     new ResponseEntity<>(String.format("Product with name %s has been added.", product.getName()), HttpStatus.OK);
         } else {
