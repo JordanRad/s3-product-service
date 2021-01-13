@@ -2,16 +2,12 @@ package com.example.productservice.controllers;
 
 import com.example.productservice.models.Category;
 import com.example.productservice.models.Product;
-import com.example.productservice.models.User;
 import com.example.productservice.repository.ProductRepository;
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController

@@ -6,7 +6,7 @@ import com.example.productservice.models.Product;
 import com.example.productservice.repository.ProductRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.assertj.core.util.Lists;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.hamcrest.Matchers.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -51,8 +50,6 @@ public class ProductMvcTests {
 
         Product s1 = repository.save(productOne);
         test1Id=s1.getId();
-        //System.out.println(String.format("Product with name: %1$s was added to %2$s category",productOne.getName(),productOne.getCategory()));
-
         Product productTwo = new Product();
         productTwo.setName("Test2");
         productTwo.setCategory(Category.Book);
